@@ -1,0 +1,14 @@
+{
+    "sessionId": "test-session-001",
+    "message": {
+        "sender": "scammer",
+        "text": "URGENT: Your HDFC Bank account will be blocked in 1 hour. Click here to verify: http://bit.ly/verify-hdfc-urgent. Enter your account number and CVV immediately or call +91-9876543210.",
+        "timestamp": "2026-02-01T10:00:00Z"
+    },
+    "conversationHistory": [],
+    "metadata": {
+        "channel": "SMS",
+        "language": "English",
+        "locale": "IN"
+    }
+}
