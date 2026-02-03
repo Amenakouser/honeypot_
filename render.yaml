@@ -25,6 +25,26 @@ services:
         value: 8000
     autoDeploy: true
 
+  # Frontend Service
+  - type: web
+    name: honeypot-frontend
+    runtime: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    region: oregon
+    plan: free
+    branch: main
+    healthCheckPath: /health
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: honeypot-backend
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: VITE_API_KEY
+        sync: false
+    autoDeploy: true
+
   # Redis Service
   - type: redis
     name: honeypot-redis

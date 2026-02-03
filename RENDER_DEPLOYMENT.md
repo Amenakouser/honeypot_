@@ -2,12 +2,21 @@
 
 ## Environment Variables Required
 
-Set these in your Render dashboard:
+### Backend Service
+
+Set these in your Render dashboard for the backend:
 
 1. **API_SECRET_KEY** - Your API authentication key
 2. **OPENAI_API_KEY** - Your OpenAI API key (starts with sk-)
 3. **CALLBACK_URL** - https://hackathon.guvi.in/api/updateHoneyPotFinalResult
 4. **REDIS_URL** - Auto-populated from Redis service
+
+### Frontend Service
+
+Set these in your Render dashboard for the frontend:
+
+1. **VITE_API_KEY** - Same value as API_SECRET_KEY
+2. **VITE_API_URL** - Auto-populated from backend service URL
 
 ## Deployment Steps
 
@@ -16,43 +25,67 @@ Set these in your Render dashboard:
 1. Push your code to GitHub
 2. In Render dashboard, click "New" → "Blueprint"
 3. Connect your repository
-4. Render will automatically detect `render.yaml`
-5. Set the required environment variables
+4. Render will automatically detect `render.yaml` and create:
+   - Backend web service (Python/FastAPI)
+   - Frontend web service (React/Nginx)
+   - Redis service
+5. Set the required environment variables for each service
 6. Click "Apply"
 
 ### Option 2: Manual Setup
 
-1. **Create Redis Service**:
-   - Click "New" → "Redis"
-   - Name: `honeypot-redis`
-   - Plan: Free
-   - Click "Create Redis"
+#### 1. Create Redis Service
 
-2. **Create Web Service**:
-   - Click "New" → "Web Service"
-   - Connect your GitHub repository
-   - Settings:
-     - Name: `honeypot-backend`
-     - Region: Oregon (or your preferred region)
-     - Branch: `main`
-     - Root Directory: Leave empty
-     - Runtime: Docker
-     - Dockerfile Path: `./backend/Dockerfile`
-     - Docker Context: `./backend`
-     - Plan: Free
-   
-3. **Environment Variables**:
-   Add these in the "Environment" section:
-   ```
-   API_SECRET_KEY=<your-secret-key>
-   OPENAI_API_KEY=<your-openai-key>
-   CALLBACK_URL=https://hackathon.guvi.in/api/updateHoneyPotFinalResult
-   REDIS_URL=<copy-from-redis-service-internal-url>
-   ```
+- Click "New" → "Redis"
+- Name: `honeypot-redis`
+- Plan: Free
+- Click "Create Redis"
 
-4. **Deploy**:
-   - Click "Create Web Service"
-   - Wait for deployment to complete
+#### 2. Create Backend Web Service
+
+- Click "New" → "Web Service"
+- Connect your GitHub repository
+- Settings:
+  - Name: `honeypot-backend`
+  - Region: Oregon (or your preferred region)
+  - Branch: `main`
+  - Root Directory: Leave empty
+  - Runtime: Docker
+  - Dockerfile Path: `./backend/Dockerfile`
+  - Docker Context: `./backend`
+  - Plan: Free
+
+- Environment Variables:
+  ```
+  API_SECRET_KEY=<your-secret-key>
+  OPENAI_API_KEY=<your-openai-key>
+  CALLBACK_URL=https://hackathon.guvi.in/api/updateHoneyPotFinalResult
+  REDIS_URL=<copy-from-redis-service-internal-url>
+  ```
+
+- Click "Create Web Service"
+
+#### 3. Create Frontend Web Service
+
+- Click "New" → "Web Service"
+- Connect your GitHub repository
+- Settings:
+  - Name: `honeypot-frontend`
+  - Region: Oregon
+  - Branch: `main`
+  - Root Directory: Leave empty
+  - Runtime: Docker
+  - Dockerfile Path: `./frontend/Dockerfile`
+  - Docker Context: `./frontend`
+  - Plan: Free
+
+- Environment Variables:
+  ```
+  VITE_API_KEY=<same-as-backend-API_SECRET_KEY>
+  VITE_API_URL=<backend-service-url>
+  ```
+
+- Click "Create Web Service"
 
 ## Troubleshooting
 
