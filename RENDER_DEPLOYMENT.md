@@ -63,6 +63,19 @@ Set these in your Render dashboard for the frontend:
   REDIS_URL=<copy-from-redis-service-internal-url>
   ```
 
+  **Firebase Credentials:**
+  Extract values from your Service Account JSON file and add:
+  ```
+  FIREBASE_TYPE=service_account
+  FIREBASE_PROJECT_ID=<project_id>
+  FIREBASE_PRIVATE_KEY=<private_key> (Paste the entire key including \n)
+  FIREBASE_CLIENT_EMAIL=<client_email>
+  FIREBASE_CLIENT_ID=<client_id>
+  # Add other FIREBASE_ vars from JSON...
+  ```
+
+- Click "Create Web Service"
+
 - Click "Create Web Service"
 
 #### 3. Create Frontend Web Service
