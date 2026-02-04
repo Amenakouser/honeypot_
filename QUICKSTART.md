@@ -15,6 +15,9 @@
    OPENAI_API_KEY=sk-your-actual-api-key-here
    ```
 
+3. (Optional) For persistent logging, configure Firebase credentials. See `FIREBASE_SETUP.md` for details.
+
+
 ## Step 2: Install Backend Dependencies
 
 Open PowerShell/Terminal in the honeypot directory:
@@ -32,7 +35,7 @@ python -m venv venv
 source venv/bin/activate  # Linux/Mac
 
 # Install dependencies
-pip install -r requirements.txt
+ pip install -r requirements.txt
 ```
 
 ## Step 3: Install Frontend Dependencies

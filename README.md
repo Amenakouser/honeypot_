@@ -229,6 +229,16 @@ The system includes 6 pre-configured test scenarios:
 | `REDIS_URL` | Redis connection URL | No (defaults to localhost) |
 | `CALLBACK_URL` | Evaluation callback endpoint | Yes |
 
+### Firebase Configuration (Optional but Recommended)
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `FIREBASE_TYPE` | Service account type | Yes |
+| `FIREBASE_PROJECT_ID` | Project ID | Yes |
+| `FIREBASE_PRIVATE_KEY` | Private key (handle newlines correctly) | Yes |
+| `FIREBASE_CLIENT_EMAIL` | Service account email | Yes |
+| ... | (See FIREBASE_SETUP.md for full list) | Yes |
+
 ### Frontend Environment Variables
 
 | Variable | Description | Required |
