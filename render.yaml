@@ -21,6 +21,19 @@ services:
           type: redis
           name: honeypot-redis
           property: connectionString
+      # Firebase Configuration
+      - key: FIREBASE_TYPE
+        value: service_account
+      - key: FIREBASE_PROJECT_ID
+        sync: false
+      - key: FIREBASE_PRIVATE_KEY
+        sync: false
+      - key: FIREBASE_CLIENT_EMAIL
+        sync: false
+      - key: FIREBASE_PRIVATE_KEY_ID
+        sync: false
+      - key: FIREBASE_CLIENT_ID
+        sync: false
       - key: PORT
         value: 8000
     autoDeploy: true
